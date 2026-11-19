@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="pt-BR">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>StudyHub · Portfólio</title>
+<style>
+:root{font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;color:#14213d;background:#f3f6fb}*{box-sizing:border-box}body{margin:0}main{max-width:920px;margin:48px auto;padding:0 20px}header{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:28px}a{color:#7c3aed;text-decoration:none}h1{font-size:clamp(2rem,6vw,3.2rem);margin:0}h2{font-size:1.15rem;margin:0 0 18px}.muted{color:#64748b}.card{background:white;border:1px solid #e2e8f0;border-radius:20px;padding:24px;margin-bottom:20px;box-shadow:0 8px 32px #1e293b0b}.fields{display:grid;grid-template-columns:2fr 1fr 1fr auto;gap:12px;align-items:end}.toolbar{display:flex;align-items:end;gap:12px;margin:14px 0}.toolbar label{max-width:210px}label{display:block;font-size:.88rem;font-weight:600}input,select{display:block;width:100%;border:1px solid #cbd5e1;border-radius:10px;padding:12px;margin-top:7px;background:white;font:inherit}button{font:inherit;border:0;background:#7c3aed;color:white;border-radius:10px;padding:13px 19px;cursor:pointer;font-weight:700}button:hover{filter:brightness(.91)}button.secondary{background:#e2e8f0;color:#334155}button.danger{background:#fee2e2;color:#991b1b}ul{list-style:none;padding:0;margin:0}.item{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:14px 0;border-bottom:1px solid #e2e8f0}.item:last-child{border:0}.item strong{display:block;overflow-wrap:anywhere}.item small{color:#64748b}.actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.actions button{padding:8px 12px;font-size:.8rem}.summary{font-size:1.4rem;font-weight:750;color:#7c3aed}.empty{padding:30px;text-align:center;color:#64748b}footer{font-size:.85rem;color:#64748b;margin:30px 0}@media(max-width:680px){main{margin:25px auto}.fields{grid-template-columns:1fr}.item{align-items:flex-start;flex-direction:column}.toolbar{flex-direction:column;align-items:stretch}.toolbar label{max-width:none}}
+</style></head>
+<body><main><header><span>📚 <strong>StudyHub</strong></span><a href="../../README.md">← Portfólio</a></header>
+<h1>StudyHub</h1><p class="muted">Organizador de estudos. Aplicação demonstrativa em JavaScript, com dados salvos neste navegador.</p>
+<section class="card"><h2>Novo registro</h2><form id="form" class="fields">
+<label>Atividade<input id="title" maxlength="100" required placeholder="Atividade"></label>
+<label>Matéria<input id="detail" maxlength="100" required placeholder="Matéria"></label>
+<label>Categoria<select id="status"><option>Pendente</option><option>Concluída</option></select></label><button type="submit">Adicionar</button>
+</form></section>
+<section class="card"><h2>Acompanhamento</h2><div id="summary" class="summary" aria-live="polite">—</div></section>
+<section class="card"><h2>Registros</h2><ul id="list"></ul><p id="empty" class="empty">Ainda não há registros.</p><div class="toolbar"><button type="button" id="clear" class="danger">Limpar todos</button></div></section>
+<footer>Projeto de portfólio · HTML, CSS e JavaScript · dados locais</footer></main>
+<script>
+"use strict";
+const KEY="sh-v1", kind="study", statuses=["Pendente","Concluída"];
+const $=id=>document.getElementById(id);
+let records=[];
+try{const parsed=JSON.parse(localStorage.getItem(KEY)||"[]");if(Array.isArray(parsed))records=parsed.filter(x=>x&&typeof x.title==="string");}catch{records=[];}
+const persist=()=>{try{localStorage.setItem(KEY,JSON.stringify(records))}catch{alert("Não foi possível salvar no armazenamento local.")}};
+const money=v=>Number(v).toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
+const fmt=v=>Number(v).toLocaleString("pt-BR",{maximumFractionDigits:2});
+function render(){
+ const list=$("list");list.replaceChildren();$("empty").hidden=records.length>0;
+ for(const r of records){
+  const li=document.createElement("li");li.className="item";
+  const info=document.createElement("div"),title=document.createElement("strong"),sub=document.createElement("small"),actions=document.createElement("div");
+  title.textContent=r.title;sub.textContent=r.detail+(kind==="money"?" · "+r.status:" · "+r.status);info.append(title,sub);actions.className="actions";
+  if(kind==="study"||kind==="kanban"){const next=document.createElement("button");next.className="secondary";next.textContent="Avançar etapa";next.addEventListener("click",()=>{r.status=statuses[(statuses.indexOf(r.status)+1)%statuses.length];persist();render()});actions.append(next)}
+  const del=document.createElement("button");del.className="danger";del.textContent="Excluir";del.setAttribute("aria-label","Excluir "+r.title);del.addEventListener("click",()=>{records=records.filter(x=>x.id!==r.id);persist();render()});actions.append(del);li.append(info,actions);list.append(li);
+ }
+ if(kind==="money"){const income=records.filter(x=>x.status==="Receita").reduce((n,x)=>n+Number(x.detail),0),expense=records.filter(x=>x.status==="Despesa").reduce((n,x)=>n+Number(x.detail),0);$("summary").textContent="Saldo: "+money(income-expense)+" · Entradas: "+money(income)+" · Saídas: "+money(expense);}
+ else if(kind==="nutrition"){calculate();}
+ else {$("summary").textContent=records.filter(x=>x.status==="Concluída"||x.status==="Concluído").length+" de "+records.length+" atividades concluídas";}
+}
+function calculate(){const portion=Number($("portion")?.value||50);$("summary").textContent=!(portion>0)?"Informe uma porção válida.":records.length?records.map(x=>x.title+": "+fmt(Number(x.detail)*portion/100)+" "+x.status).join(" | "):"Adicione nutrientes para calcular.";}
+$("form").addEventListener("submit",e=>{e.preventDefault();const title=$("title").value.trim(),detail=$("detail").value.trim(),status=$("status").value;if(!title||!detail)return;if((kind==="money"||kind==="nutrition")&&(!Number.isFinite(Number(detail))||Number(detail)<0))return;records.push({id:globalThis.crypto?.randomUUID?.()||String(Date.now())+Math.random(),title,detail,status});persist();$("form").reset();render();$("title").focus()});
+$("clear").addEventListener("click",()=>{if(records.length&&confirm("Excluir todos os registros deste projeto?")){records=[];persist();render()}});
+if(kind==="nutrition"){$("calculate").addEventListener("click",calculate);$("portion").addEventListener("input",calculate)}
+render();
+</script></body></html>
