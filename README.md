@@ -1,28 +1,35 @@
-# Isak Dutra — Portfólio de Desenvolvimento
+# Isak Dutra — AI Engineering & Software
 
-Bem-vindo ao meu portfólio de projetos! Aqui reuni aplicações práticas desenvolvidas com **HTML, CSS e JavaScript**, com foco em interfaces, lógica de programação e soluções para problemas reais.
+**Construir sistemas que resolvem problemas, não só telas.**
 
-## Projetos
+Portfólio focado em inteligência artificial aplicada, engenharia de software, produtos digitais e operações. Dois projetos de engenharia para estudar e evoluir — APIs reais, modelos, interfaces e testes.
 
-| Projeto | Descrição | Acessar |
-| --- | --- | --- |
-| 💰 FinanceFlow | Controle de receitas, despesas e orçamento mensal com persistência local. | [Abrir](./projetos/financeflow/) |
-| 📚 StudyHub | Planejador de estudos, matérias e progresso de tarefas. | [Abrir](./projetos/studyhub/) |
-| 🥗 NutriCalc | Calculadora didática de informação nutricional por porção. | [Abrir](./projetos/nutricalc/) |
-| ✅ TaskBoard | Quadro Kanban para organizar tarefas por estágio. | [Abrir](./projetos/taskboard/) |
+## Projetos em destaque
 
-## Tecnologias
+### 01 · [FARO Ops — Operations Intelligence](./faro-ops/)
+**Machine Learning | Python | FastAPI | scikit-learn | Docker**
 
-HTML5 · CSS3 · JavaScript (ES6+) · Web Storage API · Responsive Design
+Sistema de inteligência operacional: recebe histórico diário, treina um modelo Random Forest, faz previsão temporal, compara desempenho contra baseline e estima ponto de reposição, estoque de segurança e compra sugerida. Inclui dashboard próprio, importação de CSV, API Swagger e testes.
 
-## Como executar
+**Desafio:** transformar previsão em decisão de negócio, deixando claras as limitações e a incerteza dos resultados.
 
-1. Abra a pasta de um projeto.
-2. Abra `index.html` em um navegador moderno.
-3. Não é necessário instalar dependências nem configurar servidor.
+### 02 · [ORION Knowledge — RAG Assistant](./orion-knowledge/)
+**IA + RAG | Python | NLP | SQLite | FastAPI | API de LLM opcional**
 
-> Os projetos rodam no navegador e armazenam os dados localmente no próprio dispositivo. São demonstrações para aprendizado e portfólio, não serviços de produção.
+Motor de conhecimento corporativo: indexa procedimentos, recupera trechos relevantes com TF-IDF, entrega referências auditáveis e, com uma chave opcional, usa um modelo de linguagem para formular respostas fundamentadas.
+
+**Desafio:** minimizar respostas sem evidência e separar recuperação de informação de geração de texto.
+
+## Para rodar
+
+Cada projeto tem seu próprio ambiente Python, instruções e API local. Abra o diretório escolhido e siga as instruções. Testes automatizados configurados em [GitHub Actions](./.github/workflows/ai-projects-ci.yml).
+
+## Laboratório inicial
+
+Os exercícios de HTML/CSS/JS anteriores continuam em [projetos/](./projetos/), mas não são o foco deste portfólio.
 
 ## Sobre
 
-Estudante com interesse em desenvolvimento web, tecnologia e aplicações práticas. Este repositório reúne demonstrações que podem ser estudadas, adaptadas e expandidas.
+Estudante do ensino médio técnico em Alimentos com interesse em inteligência artificial, desenvolvimento web, automação e produtos de tecnologia. O FARO conversa com gestão de negócios; o ORION, com gestão de conhecimento de equipes.
+
+> **Transparência:** protótipos de portfólio, não sistemas implantados ou validados em produção. Desenvolvidos com assistência de IA; entender, testar, explicar e evoluir o código faz parte do aprendizado. Dados de demonstração são fictícios.
