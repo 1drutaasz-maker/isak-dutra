@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#09121f"><title>FARO / Operations Intelligence</title>
+<link rel="stylesheet" href="/static/styles.css"></head>
+<body><div class="app">
+<aside class="sidebar"><div class="brand"><span class="brand-symbol">◈</span><div>FARO<span class="brand-small">OPERATIONS INTELLIGENCE</span></div></div>
+<div class="side-label">WORKSPACE</div><div class="nav active">◫ <span>Intelligence Overview</span></div><div class="nav">▥ <span>Demand Forecasting</span></div><div class="nav">◎ <span>Inventory Signals</span></div><div class="spacer"></div>
+<div class="sidebar-footer"><div class="online-dot"></div> ML ENGINE <span>ACTIVE</span></div></aside>
+<main class="content"><header class="topbar"><div class="breadcrumb">WORKSPACE <b>/</b> DEMAND INTELLIGENCE</div><div class="topright"><span class="pulse"></span> SYSTEM READY <span class="avatar">ID</span></div></header>
+<div class="heading"><div><div class="eyebrow">◈ DECISION SYSTEM / 01</div><h1>Make better<br><em>decisions.</em></h1><p>Previsão de demanda, risco de ruptura e recomendação de reposição. Machine learning aplicado a operações reais.</p></div><div class="analysis-tag">RANDOM FOREST <span>● LIVE INFERENCE</span></div></div>
+<section class="inputpanel"><div class="section-heading"><h2>01 / Parâmetros da operação</h2><p>Insira histórico diário via CSV ou utilize a demonstração.</p></div>
+<div class="controls"><label>SKU / PRODUTO<input id="sku" value="LEITE INTEGRAL 1L" maxlength="80"></label>
+<label>ESTOQUE ATUAL<input id="stock" type="number" min="0" value="125"></label>
+<label>LEAD TIME (DIAS)<input id="lead" type="number" min="1" max="30" value="7"></label>
+<label>PROJEÇÃO (DIAS)<select id="horizon"><option value="7">07 DIAS</option><option value="14" selected>14 DIAS</option><option value="21">21 DIAS</option><option value="30">30 DIAS</option></select></label></div>
+<div class="actions"><label class="upload" for="csv">↥ IMPORTAR CSV <span>(date,units)</span></label><input id="csv" type="file" accept=".csv,text/csv" hidden>
+<span class="data-status" id="dataStatus">● DADOS DE DEMONSTRAÇÃO / 120 DIAS</span><button id="run" type="button">ANALISAR DEMANDA ↗</button></div>
+<p class="message" id="message" role="status"></p></section>
+<section id="results" hidden><div class="section-heading split"><div><div class="eyebrow">02 / PERFORMANCE</div><h2>Intelligence report</h2></div><span class="report-date" id="reportDate"></span></div>
+<div class="kpis"><article class="kpi"><span>DEMANDA PROJETADA</span><strong id="demand">—</strong><small>UNIDADES / PRÓXIMOS DIAS</small></article>
+<article class="kpi"><span>PONTO DE REPOSIÇÃO</span><strong id="reorder">—</strong><small>UNIDADES / CRITÉRIO OPERACIONAL</small></article>
+<article class="kpi"><span>COMPRA RECOMENDADA</span><strong id="purchase">—</strong><small id="statusCaption">—</small></article>
+<article class="kpi"><span>ERRO MÉDIO (MAE)</span><strong id="mae">—</strong><small id="comparison">VALIDAÇÃO TEMPORAL</small></article></div>
+<div class="vizgrid"><article class="chartcard"><div class="cardtitle"><div><div class="eyebrow">MODEL OUTPUT</div><h3>Previsão de demanda</h3></div><span>UNIDADES / DIA</span></div><div class="chart" id="chart" aria-label="Gráfico de previsão"></div><div class="legend"><i></i> demanda prevista <span>faixas de incerteza heurísticas (não calibradas)</span></div></article>
+<article class="insightcard"><div class="eyebrow">ACTIONABLE INTELLIGENCE</div><h3 id="insightTitle">—</h3><p id="insight">—</p><div class="line"></div><div class="rowline"><span>ESTOQUE DE SEGURANÇA</span><b id="safety">—</b></div><div class="rowline"><span>DEMANDA / LEAD TIME</span><b id="leadDemand">—</b></div><div class="rowline"><span>VALIDAÇÃO</span><b id="validation">—</b></div></article></div>
+<p class="disclaimer">⚑ Protótipo de portfólio. Dados de demonstração são sintéticos; recomendações não substituem validação operacional. O modelo é treinado ao solicitar análise, sem conexão com ERP.</p></section>
+<footer>FARO / OPERATIONS INTELLIGENCE <span>BUILT TO THINK AHEAD. © 2026</span></footer>
+</main></div><script src="/static/app.js" defer></script></body></html>
