@@ -17,7 +17,7 @@ jobs:
         run: pip install -r faro-ops/requirements.txt
       - name: FARO tests
         working-directory: faro-ops
-        run: pytest -q
+        run: python -m pytest -q
   orion:
     runs-on: ubuntu-latest
     steps:
@@ -31,4 +31,4 @@ jobs:
         run: pip install -r orion-knowledge/requirements.txt
       - name: ORION tests
         working-directory: orion-knowledge
-        run: pytest -q
+        run: python -m pytest -q
