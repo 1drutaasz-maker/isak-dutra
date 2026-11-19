@@ -2,7 +2,7 @@
 
 **Construir sistemas que resolvem problemas, não só telas.**
 
-Portfólio focado em inteligência artificial aplicada, engenharia de software, produtos digitais e operações. Dois projetos de engenharia para estudar e evoluir — APIs reais, modelos, interfaces e testes.
+Portfólio focado em inteligência artificial aplicada, engenharia de software, produtos digitais e operações. Três projetos de engenharia para estudar e evoluir — APIs reais, modelos, interfaces e testes.
 
 ## Projetos em destaque
 
@@ -20,6 +20,13 @@ Motor de conhecimento corporativo: indexa procedimentos, recupera trechos releva
 
 **Desafio:** minimizar respostas sem evidência e separar recuperação de informação de geração de texto.
 
+### 03 · [VIGIA Quality — Quality Intelligence](./vigia-quality/)
+**Anomaly Detection | Python | FastAPI | Isolation Forest | Docker**
+
+Sistema de monitoramento de processos alimentícios: aprende um perfil de lotes de referência e sinaliza medições atípicas de temperatura, pH, duração e rendimento. Inclui painel próprio, gráfico de distribuição, importação de CSV, API e testes.
+
+**Desafio:** diferenciar um alerta estatístico de uma decisão de qualidade — e mostrar sinais investigáveis, sem fingir um laudo sanitário.
+
 ## Para rodar
 
 Cada projeto tem seu próprio ambiente Python, instruções e API local. Abra o diretório escolhido e siga as instruções. Testes automatizados configurados em [GitHub Actions](./.github/workflows/ai-projects-ci.yml).
@@ -30,6 +37,6 @@ Os exercícios de HTML/CSS/JS anteriores continuam em [projetos/](./projetos/), 
 
 ## Sobre
 
-Estudante do ensino médio técnico em Alimentos com interesse em inteligência artificial, desenvolvimento web, automação e produtos de tecnologia. O FARO conversa com gestão de negócios; o ORION, com gestão de conhecimento de equipes.
+Estudante do ensino médio técnico em Alimentos com interesse em inteligência artificial, desenvolvimento web, automação e produtos de tecnologia. O FARO conversa com gestão de negócios; o ORION, com conhecimento de equipes; e o VIGIA, com meu interesse em tecnologia de alimentos e qualidade industrial.
 
 > **Transparência:** protótipos de portfólio, não sistemas implantados ou validados em produção. Desenvolvidos com assistência de IA; entender, testar, explicar e evoluir o código faz parte do aprendizado. Dados de demonstração são fictícios.
